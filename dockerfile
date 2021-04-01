@@ -18,4 +18,8 @@ RUN apt-get install -y python-pip
 # Install app dependencies
 RUN pip install --upgrade pip 
 
+#install git
+RUN apt-get update && \
+sudo apt-get install git
+
 USER jenkins
