@@ -1,11 +1,6 @@
 FROM jenkins/jenkins:lts
 
-# Plugins for better UX (not mandatory)
-RUN /usr/local/bin/install-plugins.sh ansicolor
-RUN /usr/local/bin/install-plugins.sh greenballs
-
-# Plugin for scaling Jenkins agents
-RUN /usr/local/bin/install-plugins.sh kubernetes
+USER root
 
 # install jenkins plugins
 COPY ./jenkins-plugins /usr/share/jenkins/plugins
@@ -16,10 +11,7 @@ RUN while read i ; \
 RUN apt-get update
 RUN apt-get install -y python-pip
 # Install app dependencies
-RUN pip install --upgrade pip 
+RUN pip install --upgrade pip
 
-#install git
-RUN apt-get update && \
-sudo apt-get install git
+RUN apt-get install git
 
-USER jenkins
